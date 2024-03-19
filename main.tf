@@ -63,7 +63,7 @@ resource "aws_nat_gateway" "adt_nat" {
 
 # Define Elastic IP for NAT Gateway
 resource "aws_eip" "adt_eip" {
-  vpc = true
+  domain = "vpc"
 }
 
 
@@ -181,7 +181,6 @@ resource "aws_instance" "bastion" {
 resource "aws_instance" "server" {
   ami           = var.ami_id
   instance_type = "t3.micro"
-  subnet_id     = aws_subnet.adt_private.id
   key_name      = "ADT_Test.pem"
 
   tags = {
